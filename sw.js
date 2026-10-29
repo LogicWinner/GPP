@@ -4,7 +4,7 @@
 // - Letras de Google Fonts: se guardan la primera vez para verse igual sin conexión.
 // - Todo lo demás (logotipos de los bancos, callejero, etc.) no se toca. Tu archivo de datos no pasa por aquí:
 //   la app lo lee y lo guarda directamente en tu carpeta de Google Drive del ordenador.
-const VERSION = 'gpp-9.2.2';
+const VERSION = 'gpp-9.3.0';
 const FUENTES = 'gpp-fuentes';
 const PROGRAMA = ['./', './index.html', './manifest.webmanifest', './iconos/icono-192.png', './iconos/icono-512.png',
   './iconos/icono-maskable-512.png', './iconos/apple-touch-icon.png', './iconos/favicon-32.png'];
@@ -37,7 +37,7 @@ self.addEventListener('fetch', (e) => {
     return;
   }
   if (url.origin !== self.location.origin) return;
-  if (url.pathname.endsWith('/version.json')) return; // siempre a la red (para saber si hay versión nueva)
+  if (url.pathname.endsWith('/version.json') || url.pathname.endsWith('/firma.json')) return; // siempre a la red (versión nueva; v9.3: dirección del script de firma)
 
   // la página: primero la red (revalidando la caché HTTP); sin conexión o si tarda más de 6 s, la guardada
   if (req.mode === 'navigate' || url.pathname.endsWith('/') || url.pathname.endsWith('/index.html')) {
