@@ -1,0 +1,24 @@
+GPP — PresFlexi v9.0 · versión web (instalable)
+
+Esta carpeta es SOLO el programa. Tus datos NO están aquí ni se suben nunca:
+siguen en tu archivo GestPrestamos-datos.json, en tu carpeta de Google Drive.
+
+Archivos:
+  index.html            la app
+  manifest.webmanifest  nombre, colores e iconos para instalarla
+  sw.js                 service worker: la deja usar sin conexión y busca versiones nuevas
+  version.json          número de versión (la app lo mira para avisarte de una nueva)
+  iconos/               iconos de la app
+  .nojekyll             para que GitHub Pages sirva los archivos tal cual
+
+Publicar en GitHub Pages (gratis):
+  1. Crea una cuenta en github.com.
+  2. New repository → nombre «gpp» → Public → Create repository.
+  3. «uploading an existing file» → arrastra TODO el contenido de esta carpeta (también la carpeta iconos) → Commit changes.
+  4. Settings → Pages → Source: «Deploy from a branch» → Branch: main, carpeta / (root) → Save.
+  5. A los 1-2 minutos la app está en https://TU-USUARIO.github.io/gpp/
+
+Versión nueva: en el repositorio, Add file → Upload files → arrastra otra vez todo el contenido (sustituye) → Commit.
+La app avisa sola de que hay versión nueva («Actualizar»).
+
+Nunca subas aquí GestPrestamos-datos.json ni la carpeta «adjuntos».
