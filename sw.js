@@ -4,7 +4,7 @@
 // - Letras de Google Fonts: se guardan la primera vez para verse igual sin conexión.
 // - Todo lo demás (logotipos de los bancos, callejero, etc.) no se toca. Tu archivo de datos no pasa por aquí:
 //   la app lo lee y lo guarda directamente en tu carpeta de Google Drive del ordenador.
-const VERSION = 'gpp-9.5.0';
+const VERSION = 'gpp-9.8.0';
 const FUENTES = 'gpp-fuentes';
 const PROGRAMA = ['./', './index.html', './manifest.webmanifest', './iconos/icono-192.png', './iconos/icono-512.png',
   './iconos/icono-maskable-512.png', './iconos/apple-touch-icon.png', './iconos/favicon-32.png'];
