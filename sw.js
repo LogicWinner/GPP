@@ -4,9 +4,10 @@
 // - Letras de Google Fonts: se guardan la primera vez para verse igual sin conexión.
 // - Todo lo demás (logotipos de los bancos, callejero, etc.) no se toca. Tu archivo de datos no pasa por aquí:
 //   la app lo lee y lo guarda directamente en tu carpeta de Google Drive del ordenador.
-const VERSION = 'gpp-11.9.0';
+const VERSION = 'gpp-12.0.0';
 const FUENTES = 'gpp-fuentes';
-const PROGRAMA = ['./', './index.html', './manifest.webmanifest', './iconos/icono-192.png', './iconos/icono-512.png',
+// v12.0 (AJ-3): «./» es la página de los clientes y «./app/» es GPP (el mismo programa en las dos)
+const PROGRAMA = ['./', './index.html', './app/', './manifest.webmanifest', './iconos/icono-192.png', './iconos/icono-512.png',
   './iconos/icono-maskable-512.png', './iconos/apple-touch-icon.png', './iconos/favicon-32.png'];
 
 self.addEventListener('install', (e) => {
@@ -43,12 +44,13 @@ self.addEventListener('fetch', (e) => {
   if (req.mode === 'navigate' || url.pathname.endsWith('/') || url.pathname.endsWith('/index.html')) {
     e.respondWith((async () => {
       const c = await caches.open(VERSION);
+      const clave = /\/app\/(index\.html)?$/.test(url.pathname) ? './app/' : './index.html';
       try {
         const r = await conTiempo(fetch(req, { cache: 'no-cache' }), 6000);
-        if (r.ok) c.put('./index.html', r.clone());
+        if (r.ok) c.put(clave, r.clone());
         return r;
       } catch {
-        return (await c.match('./index.html')) || (await caches.match(req)) || new Response('GPP necesita conexión la primera vez que se abre.', { status: 503, headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+        return (await c.match(clave)) || (await caches.match(req)) || new Response('GPP necesita conexión la primera vez que se abre.', { status: 503, headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
       }
     })());
     return;
